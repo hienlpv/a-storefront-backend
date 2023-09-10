@@ -1,0 +1,9 @@
+{
+    "dev": {
+        "driver": "pg",
+        "host": "drona.db.elephantsql.com",
+        "database": "qajflqag",
+        "user": "qajflqag",
+        "password": "63oHkQEXIr4hmkmzGXbIxQzyxILMCL0w"
+    }
+}
