@@ -10,8 +10,8 @@ const client = new Pool({
     password,
 });
 
-export function connectDB() {
+function connect() {
     client.connect().then(() => console.log('Database is connected'));
 }
 
-export default client;
+export default { client, connect };
