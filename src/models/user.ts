@@ -1,4 +1,4 @@
-import client from '../database';
+import { client } from '../database';
 
 export default class UserStore {
     async index(): Promise<User[]> {

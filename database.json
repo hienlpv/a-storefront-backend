@@ -1,9 +1,16 @@
 {
     "dev": {
         "driver": "pg",
-        "host": "drona.db.elephantsql.com",
-        "database": "qajflqag",
-        "user": "qajflqag",
-        "password": "63oHkQEXIr4hmkmzGXbIxQzyxILMCL0w"
+        "host": "berry.db.elephantsql.com",
+        "database": "locqnycf",
+        "user": "locqnycf",
+        "password": "Bsrbb4W2b2JJDEbSPrsOws-VEwQEIPBo"
+    },
+    "test": {
+        "driver": "pg",
+        "host": "berry.db.elephantsql.com",
+        "database": "wgwvbbfq",
+        "user": "wgwvbbfq",
+        "password": "Sg95PGjebL5LBYopC5ioguFvTyI1ppkZ"
     }
 }
