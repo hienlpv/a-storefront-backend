@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "npm run build && node build/server.js",
-        "dev": "nodemon -r dotenv/config ./src/server.ts",
+        "dev": "nodemon ./src/server.ts",
         "build": "npx tsc",
         "lint": "eslint . --ext .ts",
         "prettier": "prettier . --write",
@@ -15,6 +15,8 @@
     "author": "Alfonsina Lizardo",
     "license": "ISC",
     "dependencies": {
+        "db-migrate": "^0.11.14",
+        "db-migrate-pg": "^1.4.2",
         "express": "^4.18.2",
         "jasmine": "^5.1.0",
         "jasmine-spec-reporter": "^7.0.0",
