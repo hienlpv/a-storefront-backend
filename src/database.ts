@@ -1,9 +1,11 @@
 import { Pool } from 'pg';
 import config from './config';
 
-const { host, database, user, password } = config.database;
+const { host, database, user, password } = process.env.ENV == 'dev' ? config.database.dev : config.database.test;
 
-const client = new Pool({
+console.log({ host, database, user, password })
+
+export const client = new Pool({
     host,
     database,
     user,

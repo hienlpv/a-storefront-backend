@@ -1,0 +1,16 @@
+{
+    "dev": {
+        "driver": "pg",
+        "host": "berry.db.elephantsql.com",
+        "database": "locqnycf",
+        "user": "locqnycf",
+        "password": "Bsrbb4W2b2JJDEbSPrsOws-VEwQEIPBo"
+    },
+    "test": {
+        "driver": "pg",
+        "host": "berry.db.elephantsql.com",
+        "database": "wgwvbbfq",
+        "user": "wgwvbbfq",
+        "password": "Sg95PGjebL5LBYopC5ioguFvTyI1ppkZ"
+    }
+}
