@@ -3,8 +3,6 @@ import config from './config';
 
 const { host, database, user, password } = process.env.ENV == 'dev' ? config.database.dev : config.database.test;
 
-console.log({ host, database, user, password })
-
 export const client = new Pool({
     host,
     database,

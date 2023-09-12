@@ -1,3 +1,4 @@
+import { User } from '.';
 import { client } from '../database';
 
 export default class UserStore {
