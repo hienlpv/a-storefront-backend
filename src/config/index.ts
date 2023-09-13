@@ -10,7 +10,8 @@ const {
     POSTGRES_USER_TEST,
     POSTGRES_PASSWORD_TEST,
     PASSWORD_PEPPER,
-    PASSWORD_SALT_ROUND
+    PASSWORD_SALT_ROUND,
+    JWT_TOKEN_SECRET
 } = process.env;
 
 export default {
@@ -35,12 +36,16 @@ export default {
     password: {
         pepper: PASSWORD_PEPPER,
         saltRounds: PASSWORD_SALT_ROUND,
+    },
+    jwt: {
+        secret: JWT_TOKEN_SECRET
     }
 } as Config;
 
 interface Config {
     server: { [key: string]: string };
     password: { [key: string]: string };
+    jwt: { [key: string]: string };
     database: {
         dev: { [key: string]: string };
         test: { [key: string]: string };

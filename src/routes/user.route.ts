@@ -11,6 +11,10 @@ userRoute.get('/', async (req: Request, res: Response) => {
     res.json(users);
 });
 
+userRoute.get('/profile', async (req: Request, res: Response) => {
+    res.json(req.body.user);
+});
+
 userRoute.post('/', async (req: Request, res: Response) => {
     const userReq = req.body as Partial<User>;
     const user = await userService.create(userReq);
@@ -19,9 +23,9 @@ userRoute.post('/', async (req: Request, res: Response) => {
 
 userRoute.post('/login', async (req: Request, res: Response) => {
     const { username, password } = req.body;
-    const user = await userService.login(username, password);
-    if (user) {
-        res.json(user);
+    const token = await userService.login(username, password);
+    if (token) {
+        res.send(token);
     } else {
         res.status(401).send();
     }

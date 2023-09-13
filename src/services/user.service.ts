@@ -8,11 +8,15 @@ export default class UserService {
         return userStore.index();
     }
 
+    show(id: string): Promise<User | null> {
+        return userStore.show(id);
+    }
+
     create(user: Partial<User>): Promise<User> {
         return userStore.create(user);
     }
 
-    login(username: string, password: string): Promise<boolean> {
+    login(username: string, password: string): Promise<boolean | string> {
         return userStore.authenticate(username, password);
     }
 }

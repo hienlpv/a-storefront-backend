@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 import { User } from '.';
 import database from '../database';
@@ -10,6 +11,16 @@ export default class UserStore {
             const sql = `SELECT * FROM users`;
             const result = await database.execute(sql);
             return result.rows;
+        } catch (err) {
+            throw new Error(`Cannot index user ${err}`);
+        }
+    }
+
+    async show(id: string): Promise<User | null> {
+        try {
+            const sql = `SELECT * FROM users WHERE id=($1)`;
+            const result = await database.execute(sql, [id]);
+            return result.rowCount ? result.rows[0] : null;
         } catch (err) {
             throw new Error(`Cannot index user ${err}`);
         }
@@ -30,9 +41,10 @@ export default class UserStore {
     async authenticate(username: string, password: string) {
         try {
             const pepper = config.password.pepper;
-            const sql = `SELECT password FROM users WHERE username=($1)`;
+            const sql = `SELECT * FROM users WHERE username=($1)`;
             const result = await database.execute(sql, [username]);
-            return !!result.rowCount && bcrypt.compareSync(password + pepper, result.rows[0].password)
+            const valid = !!result.rowCount && bcrypt.compareSync(password + pepper, result.rows[0].password);
+            return valid && jwt.sign({ userId: result.rows[0].id }, config.jwt.secret);
         } catch (err) {
             throw new Error(`Cannot authenticate user ${err}`);
         }
