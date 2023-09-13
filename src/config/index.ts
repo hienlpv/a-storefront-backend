@@ -9,6 +9,8 @@ const {
     POSTGRES_DATABASE_TEST,
     POSTGRES_USER_TEST,
     POSTGRES_PASSWORD_TEST,
+    PASSWORD_PEPPER,
+    PASSWORD_SALT_ROUND
 } = process.env;
 
 export default {
@@ -30,10 +32,15 @@ export default {
             password: POSTGRES_PASSWORD_TEST,
         },
     },
+    password: {
+        pepper: PASSWORD_PEPPER,
+        saltRounds: PASSWORD_SALT_ROUND,
+    }
 } as Config;
 
 interface Config {
     server: { [key: string]: string };
+    password: { [key: string]: string };
     database: {
         dev: { [key: string]: string };
         test: { [key: string]: string };

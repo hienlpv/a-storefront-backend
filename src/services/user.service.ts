@@ -7,4 +7,12 @@ export default class UserService {
     index(): Promise<User[]> {
         return userStore.index();
     }
+
+    create(user: Partial<User>): Promise<User> {
+        return userStore.create(user);
+    }
+
+    login(username: string, password: string): Promise<boolean> {
+        return userStore.authenticate(username, password);
+    }
 }

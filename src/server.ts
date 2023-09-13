@@ -1,7 +1,7 @@
 import 'dotenv/config';
 
 import cors from 'cors';
-import express from 'express';
+import express, { json } from 'express';
 
 import config from './config';
 import database from './database';
@@ -12,6 +12,7 @@ const app = express();
 const port = config.server.port;
 
 // middleware
+app.use(json());
 app.use(cors());
 
 // connect DB

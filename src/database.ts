@@ -1,7 +1,7 @@
 import { Pool } from 'pg';
 import config from './config';
 
-const { host, database, user, password } = process.env.ENV == 'dev' ? config.database.dev : config.database.test;
+const { host, database, user, password } = process.env.NODE_ENV == 'dev' ? config.database.dev : config.database.test;
 
 export const client = new Pool({
     host,
@@ -14,4 +14,11 @@ function connect() {
     client.connect().then(() => console.log('Database is connected'));
 }
 
-export default { client, connect };
+async function execute(sql: string, param: any[] = []) {
+    const conn = await client.connect();
+    const result = await conn.query(sql, param);
+    conn.release();
+    return result;
+}
+
+export default { client, connect, execute };
