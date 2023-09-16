@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 
 import config from '../config';
 import database from '../database/database';
-import { Order, Product, User } from '../model';
+import { Order, User } from '../model';
 import UserStore from '../model/user';
 
 const userStore = new UserStore();

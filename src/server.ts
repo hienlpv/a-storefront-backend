@@ -7,9 +7,9 @@ import config from './config';
 import database from './database/database';
 import { verifyAuthToken } from './middleware/auth.middleware';
 import authRoute from './routes/auth.route';
+import orderRoute from './routes/order.route';
 import productRoute from './routes/product.route';
 import userRoute from './routes/user.route';
-import orderRoute from './routes/order.route';
 
 // variable
 const app = express();

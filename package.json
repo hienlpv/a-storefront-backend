@@ -11,7 +11,7 @@
         "lint:fix": "eslint . --ext .ts --fix",
         "prettier": "prettier . --write",
         "jasmine": "jasmine",
-        "test": "set ENV=test db-migrate --env test up && npm run build && jasmine && db-migrate db:drop test"
+        "test": "set ENV=test && db-migrate --env test up && npm run build && jasmine && db-migrate --env test down -c 3"
     },
     "author": "HienLPV",
     "license": "ISC",
