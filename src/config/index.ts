@@ -1,6 +1,16 @@
+import { User } from '../model';
+
+declare global {
+    namespace Express {
+        interface Request {
+            user: User;
+        }
+    }
+}
+
 const {
     PORT,
-    NODE_ENV,
+    ENV,
     POSTGRES_HOST_DEV,
     POSTGRES_HOST_TEST,
     POSTGRES_DATABASE_DEV,
@@ -9,12 +19,15 @@ const {
     POSTGRES_DATABASE_TEST,
     POSTGRES_USER_TEST,
     POSTGRES_PASSWORD_TEST,
+    PASSWORD_PEPPER,
+    PASSWORD_SALT_ROUND,
+    JWT_TOKEN_SECRET,
 } = process.env;
 
 export default {
     server: {
         port: PORT,
-        env: NODE_ENV,
+        env: ENV,
     },
     database: {
         dev: {
@@ -30,12 +43,11 @@ export default {
             password: POSTGRES_PASSWORD_TEST,
         },
     },
-} as Config;
-
-interface Config {
-    server: { [key: string]: string };
-    database: {
-        dev: { [key: string]: string };
-        test: { [key: string]: string };
-    };
-}
+    password: {
+        pepper: PASSWORD_PEPPER,
+        saltRounds: PASSWORD_SALT_ROUND,
+    },
+    jwt: {
+        secret: JWT_TOKEN_SECRET,
+    },
+};
