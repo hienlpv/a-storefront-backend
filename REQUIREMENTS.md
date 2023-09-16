@@ -19,7 +19,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - [API]
     - Index: /user [GET] [Bearer_Token]
     - Show: /user/:id [GET] [Bearer_Token]
-    - Create: /user [POST] [Bearer_Token]
+    - Create: /user [POST]
         - param: {
             "username": string,
             "password": string,
