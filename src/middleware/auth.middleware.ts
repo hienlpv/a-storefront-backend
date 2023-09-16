@@ -4,6 +4,7 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 import config from '../config';
 import UserService from '../service/user.service';
 import StringUtils from '../utils/string.util';
+import { User } from '../model';
 
 const userService = new UserService();
 const whiteList = [
@@ -15,7 +16,8 @@ const whiteList = [
 export async function verifyAuthToken(req: Request, res: Response, next: NextFunction) {
     try {
         if (whiteList.some(({ method, path }) => method === req.method && StringUtils.matchRule(req.path, path))) {
-            return next();
+            next();
+            return;
         }
 
         const token = req.headers.authorization?.split(' ')[1];
@@ -23,12 +25,15 @@ export async function verifyAuthToken(req: Request, res: Response, next: NextFun
         if (token) {
             const secret = config.jwt.secret as string;
             const decoded = jwt.verify(token, secret) as JwtPayload;
-            req.body.user = await userService.show(decoded.userId);
+            req.user = await userService.show(decoded.userId) as User;
             next();
         } else {
             res.status(401).send();
+            
         }
     } catch {
         res.status(401).send();
     }
 }
+
+export default { verifyAuthToken };

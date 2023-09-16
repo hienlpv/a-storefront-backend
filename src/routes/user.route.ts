@@ -11,7 +11,7 @@ userRoute.get('/', async (req: Request, res: Response) => {
 });
 
 userRoute.get('/profile', async (req: Request, res: Response) => {
-    res.json(req.body.user);
+    res.json(req.user);
 });
 
 userRoute.post('/', async (req: Request, res: Response) => {

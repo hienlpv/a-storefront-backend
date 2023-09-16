@@ -1,3 +1,5 @@
+import { OrderStatus } from '../enum/order.enum';
+
 export interface User {
     id: number;
     username: string;
@@ -18,5 +20,5 @@ export interface Order {
     product_id: numner;
     user_id: number;
     quantity: number;
-    status: string;
+    status: OrderStatus;
 }

@@ -9,10 +9,11 @@ import { verifyAuthToken } from './middleware/auth.middleware';
 import authRoute from './routes/auth.route';
 import productRoute from './routes/product.route';
 import userRoute from './routes/user.route';
+import orderRoute from './routes/order.route';
 
 // variable
 const app = express();
-const port = config.server.port;
+const { port } = config.server;
 
 // middleware
 app.use(json());
@@ -26,6 +27,7 @@ database.connect();
 app.use('/auth', authRoute);
 app.use('/user', userRoute);
 app.use('/product', productRoute);
+app.use('/order', orderRoute);
 
 // listen server
 app.listen(port, () => console.log(`Server is running on http://localhost:${port}`));

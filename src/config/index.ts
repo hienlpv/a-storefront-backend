@@ -1,6 +1,16 @@
+import { User } from '../model';
+
+declare global {
+    namespace Express {
+        interface Request {
+            user: User;
+        }
+    }
+}
+
 const {
     PORT,
-    NODE_ENV,
+    ENV,
     POSTGRES_HOST_DEV,
     POSTGRES_HOST_TEST,
     POSTGRES_DATABASE_DEV,
@@ -17,7 +27,7 @@ const {
 export default {
     server: {
         port: PORT,
-        env: NODE_ENV,
+        env: ENV,
     },
     database: {
         dev: {

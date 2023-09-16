@@ -5,33 +5,72 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## API Endpoints
 #### Products
-- Index 
-- Show
-- Create [token required]
-- [OPTIONAL] Top 5 most popular products 
-- [OPTIONAL] Products by category (args: product category)
+- [API]
+    - Index: /product [GET]
+    - Show: /product/:id [GET]
+    - Crate: /product [POST] [Bearer_Token]
+        - param: {
+            "name": string,
+            "price": number,
+            "category": string
+        }
 
 #### Users
-- Index [token required]
-- Show [token required]
-- Create N[token required]
+- [API]
+    - Index: /user [GET] [Bearer_Token]
+    - Show: /user/:id [GET] [Bearer_Token]
+    - Create: /user [POST] [Bearer_Token]
+        - param: {
+            "username": string,
+            "password": string,
+            "firstName": string,
+            "lastName": string
+        }
 
 #### Orders
-- Current Order by user (args: user id)[token required]
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
+- [API]
+    - Index: /order [GET] [Bearer_Token]
+    - Add Product: /order/product [POST] [Bearer_Token]
+        - param: {
+            "product_id": number,
+            "quantity": number
+        }
+
+#### Auth
+- [API]
+    - Login: /auth/login [POST]
+        - param: {
+            "username": string,
+            "password": string
+        }
 
 ## Data Shapes
 #### Product
--  id
+- id
 - name
 - price
-- [OPTIONAL] category
+- category
+- [SQL]
+    CREATE TABLE products (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR,
+        price DECIMAL,
+        category VARCHAR
+    );
 
 #### User
 - id
 - firstName
 - lastName
 - password
+- [SQL]
+    CREATE TABLE users (
+        id SERIAL PRIMARY KEY,
+        username VARCHAR(100),
+        firstName VARCHAR,
+        lastName VARCHAR,
+        password VARCHAR
+    );
 
 #### Orders
 - id
@@ -39,4 +78,14 @@ These are the notes from a meeting with the frontend developer that describe wha
 - quantity of each product in the order
 - user_id
 - status of order (active or complete)
+- [SQL]
+    CREATE TABLE orders (
+        id SERIAL PRIMARY KEY,
+        product_id INT,
+        quantity INT,
+        user_id INT,
+        status VARCHAR,
+        FOREIGN KEY (product_id) REFERENCES products(id),
+        FOREIGN KEY (user_id) REFERENCES users(id)
+    );
 
