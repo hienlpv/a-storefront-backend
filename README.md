@@ -28,7 +28,26 @@
 
 3. create database.json file
 
-4. npm run dev
+    {
+        "dev": {
+            "driver": "pg",
+            "host": <DEV_HOST>,
+            "database": <DEV_DATABASE>,
+            "user": <DEV_USER>,
+            "password": <DEV_PASSWORD>
+        },
+        "test": {
+            "driver": "pg",
+            "host": <TEST_HOST>,
+            "database": <TEST_DATABASE>,
+            "user": <TEST_USER>,
+            "password": <TEST_PASSWORD>
+        },
+    }
+
+4. npm install -g db-migrate
+5. db-migrate up
+5. npm run dev
 
 #### Test
 1. npm run test (jasmine)
