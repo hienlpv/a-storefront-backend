@@ -1,14 +1,13 @@
 import { Request, Response, Router } from 'express';
 
-import UserService from '../services/user.service';
-import { User } from '../models';
+import { User } from '../model';
+import UserService from '../service/user.service';
 
 const userRoute = Router();
 const userService = new UserService();
 
 userRoute.get('/', async (req: Request, res: Response) => {
-    const users = await userService.index();
-    res.json(users);
+    res.json(await userService.index());
 });
 
 userRoute.get('/profile', async (req: Request, res: Response) => {
@@ -16,14 +15,12 @@ userRoute.get('/profile', async (req: Request, res: Response) => {
 });
 
 userRoute.post('/', async (req: Request, res: Response) => {
-    const userReq = req.body as Partial<User>;
-    const user = await userService.create(userReq);
-    res.json(user);
+    res.json(await userService.create(req.body as User));
 });
 
 userRoute.post('/login', async (req: Request, res: Response) => {
     const { username, password } = req.body;
-    const token = await userService.login(username, password);
+    const token = await userService.authenticate(username, password);
     if (token) {
         res.send(token);
     } else {

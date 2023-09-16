@@ -4,9 +4,11 @@ import cors from 'cors';
 import express, { json } from 'express';
 
 import config from './config';
-import database from './database';
+import database from './database/database';
+import { verifyAuthToken } from './middleware/auth.middleware';
+import authRoute from './routes/auth.route';
+import productRoute from './routes/product.route';
 import userRoute from './routes/user.route';
-import { verifyAuthToken } from './middlewares/auth.middleware';
 
 // variable
 const app = express();
@@ -21,7 +23,9 @@ app.use(verifyAuthToken);
 database.connect();
 
 // routes
+app.use('/auth', authRoute);
 app.use('/user', userRoute);
+app.use('/product', productRoute);
 
 // listen server
 app.listen(port, () => console.log(`Server is running on http://localhost:${port}`));

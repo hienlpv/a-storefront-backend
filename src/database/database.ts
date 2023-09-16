@@ -1,7 +1,7 @@
 import { Pool } from 'pg';
-import config from './config';
+import config from '../config';
 
-const { host, database, user, password } = process.env.NODE_ENV == 'dev' ? config.database.dev : config.database.test;
+const { host, database, user, password } = config.server.env == 'dev' ? config.database.dev : config.database.test;
 
 export const client = new Pool({
     host,

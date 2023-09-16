@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import UserStore from '../models/user';
+import UserStore from '../model/user';
 
 const store = new UserStore();
 
