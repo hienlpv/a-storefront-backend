@@ -8,6 +8,7 @@ import { User } from '../model';
 
 const userService = new UserService();
 const whiteList = [
+    { method: 'POST', path: '/user' },
     { method: 'POST', path: '/auth/login' },
     { method: 'GET', path: '/product' },
     { method: 'GET', path: '/product/*' },

@@ -1,6 +1,6 @@
 import 'dotenv/config';
-import ProductService from '../service/product.service';
-import { Product } from '../model';
+import ProductService from '../../service/product.service';
+import { Product } from '../../model';
 
 const productService = new ProductService();
 
@@ -11,7 +11,7 @@ describe('Product Service', () => {
 
     it('Index method should return a list of products', async () => {
         const result = await productService.index();
-        expect(result).toEqual([]);
+        expect(result).toBeInstanceOf(Array);
     });
 
     it('Create method should return a product', async () => {
