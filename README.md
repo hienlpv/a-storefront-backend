@@ -47,7 +47,9 @@
 6. npm run dev
 7. local Postgres port is 5432
 
-#### Test
+# How to Test
 1. npm run test (jasmine)
 2. import "a-storefront-backend.postman_collection" to POSTMAN (API)
 3. import "a-storefront-backend-dev.postman_environment" to POSTMAN (ENV)
+4. create first user with POST /user
+5. login with POST /auth/login
