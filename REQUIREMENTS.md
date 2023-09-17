@@ -8,7 +8,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - [API]
     - Index: /product [GET]
     - Show: /product/:id [GET]
-    - Crate: /product [POST] [Bearer_Token]
+    - Crate: /product [POST] [REQUIRED_TOKEN]
         - param: {
             "name": string,
             "price": number,
@@ -17,8 +17,8 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Users
 - [API]
-    - Index: /user [GET] [Bearer_Token]
-    - Show: /user/:id [GET] [Bearer_Token]
+    - Index: /user [GET] [REQUIRED_TOKEN]
+    - Show: /user/:id [GET] [REQUIRED_TOKEN]
     - Create: /user [POST]
         - param: {
             "username": string,
@@ -29,8 +29,8 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Orders
 - [API]
-    - Index: /order [GET] [Bearer_Token]
-    - Add Product: /order/product [POST] [Bearer_Token]
+    - Index: /order [GET] [REQUIRED_TOKEN]
+    - Add Product: /order/product [POST] [REQUIRED_TOKEN]
         - param: {
             "product_id": number,
             "quantity": number
@@ -74,18 +74,28 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Orders
 - id
-- id of each product in the order
-- quantity of each product in the order
 - user_id
 - status of order (active or complete)
 - [SQL]
     CREATE TABLE orders (
         id SERIAL PRIMARY KEY,
-        product_id INT,
-        quantity INT,
         user_id INT,
         status VARCHAR,
-        FOREIGN KEY (product_id) REFERENCES products(id),
         FOREIGN KEY (user_id) REFERENCES users(id)
+    );
+
+#### Order Products
+- id
+- id of orders
+- id of each product in the order
+- quantity of each product in the order
+- [SQL] 
+    CREATE TABLE order_products (
+        id SERIAL PRIMARY KEY,
+        order_id INT,
+        product_id INT,
+        quantity INT,
+        FOREIGN KEY (order_id) REFERENCES orders(id),
+        FOREIGN KEY (product_id) REFERENCES products(id)
     );
 

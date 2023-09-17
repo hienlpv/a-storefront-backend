@@ -1,29 +1,37 @@
 import { Request, Response, Router } from 'express';
-
-import UserService from '../service/user.service';
+import OrderService from '../service/order.service';
 
 const orderRoute = Router();
-const userService = new UserService();
+const orderService = new OrderService();
 
 orderRoute.get('/', async (req: Request, res: Response) => {
     try {
-        const user = req.user;
-        if (user.id) {
-            res.json(await userService.getOrders(user.id));
+        if (req.user.id) {
+            res.json(await orderService.index(req.user.id));
         } else {
             res.status(401).send();
         }
-    } catch (err) {
-        res.status(500).json(err);
+    } catch (err: any) {
+        res.status(500).json(err.message);
+    }
+});
+
+orderRoute.get('/:id', async (req: Request, res: Response) => {
+    try {
+        if (req.user.id) {
+            res.json(await orderService.show(req.user.id, req.params.id));
+        } else {
+            res.status(401).send();
+        }
+    } catch (err: any) {
+        res.status(500).json(err.message);
     }
 });
 
 orderRoute.post('/product', async (req: Request, res: Response) => {
     try {
-        const user = req.user;
-        const { product_id, quantity } = req.body;
-        if (user.id) {
-            res.json(await userService.order(user.id, product_id, quantity));
+        if (req.user.id) {
+            res.json(await orderService.order(req.user.id, req.body));
         } else {
             res.status(401).send();
         }

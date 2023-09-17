@@ -45,6 +45,7 @@
 4. npm install -g db-migrate
 5. db-migrate up
 6. npm run dev
+7. local Postgres port is 5432
 
 # How to Test
 1. npm run test (jasmine)

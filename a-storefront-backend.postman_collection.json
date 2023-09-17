@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3d74dde8-617a-4b6c-bd80-93111d491817",
+		"_postman_id": "6e2a4a8d-6f09-47f9-a903-58293df64537",
 		"name": "a-storefront-backend",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "14947769"
@@ -34,7 +34,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"user2\",\r\n    \"password\": \"Cpe123!@#\",\r\n    \"firstName\": \"user\",\r\n    \"lastName\": \"2\"\r\n}",
+							"raw": "{\r\n    \"username\": \"user\",\r\n    \"password\": \"Cpe123!@#\",\r\n    \"firstName\": \"user\",\r\n    \"lastName\": \"test\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -95,7 +95,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"product 2\",\r\n    \"price\": \"25.5\",\r\n    \"category\": \"category 1\"\r\n}",
+							"raw": "{\r\n    \"name\": \"product 1\",\r\n    \"price\": \"52.5\",\r\n    \"category\": \"category 1\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -149,7 +149,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"Cpe123!@#\"\r\n}",
+							"raw": "{\r\n    \"username\": \"user\",\r\n    \"password\": \"Cpe123!@#\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -195,13 +195,22 @@
 					"response": []
 				},
 				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}:{{port}}/{{prefix}}/1"
+					},
+					"response": []
+				},
+				{
 					"name": "product",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"product_id\": 2,\r\n    \"quantity\": 20\r\n}",
+							"raw": "[\r\n    {\r\n        \"product_id\": 1,\r\n        \"quantity\": 20\r\n    },\r\n    {\r\n        \"product_id\": 2,\r\n        \"quantity\": 50\r\n    }\r\n]",
 							"options": {
 								"raw": {
 									"language": "json"

@@ -7,24 +7,26 @@ const userRoute = Router();
 const userService = new UserService();
 
 userRoute.get('/', async (req: Request, res: Response) => {
-    res.json(await userService.index());
+    try {
+        res.json(await userService.index());
+    } catch (err: any) {
+        res.status(500).json(err.message);
+    }
 });
 
 userRoute.get('/profile', async (req: Request, res: Response) => {
-    res.json(req.user);
+    try {
+        res.json(req.user);
+    } catch (err: any) {
+        res.status(500).json(err.message);
+    }
 });
 
 userRoute.post('/', async (req: Request, res: Response) => {
-    res.json(await userService.create(req.body as User));
-});
-
-userRoute.post('/login', async (req: Request, res: Response) => {
-    const { username, password } = req.body;
-    const token = await userService.authenticate(username, password);
-    if (token) {
-        res.send(token);
-    } else {
-        res.status(401).send();
+    try {
+        res.json(await userService.create(req.body as User));
+    } catch (err: any) {
+        res.status(500).json(err.message);
     }
 });
 

@@ -7,15 +7,27 @@ const productRoute = Router();
 const productService = new ProductService();
 
 productRoute.get('/', async (req: Request, res: Response) => {
-    res.json(await productService.index());
+    try {
+        res.json(await productService.index());
+    } catch (err: any) {
+        res.status(500).json(err.message);
+    }
 });
 
 productRoute.get('/:id', async (req: Request, res: Response) => {
-    res.json(await productService.show(req.params.id));
+    try {
+        res.json(await productService.show(req.params.id));
+    } catch (err: any) {
+        res.status(500).json(err.message);
+    }
 });
 
 productRoute.post('/', async (req: Request, res: Response) => {
-    res.json(await productService.create(req.body as Product));
+    try {
+        res.json(await productService.create(req.body as Product));
+    } catch (err: any) {
+        res.status(500).json(err.message);
+    }
 });
 
 export default productRoute;
