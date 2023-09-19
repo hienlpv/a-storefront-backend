@@ -1,55 +1,40 @@
 # Storefront Backend Udacity Project
 
-# How to start
+## 1 Install Package
 1. npm install
-2. create .env file
+2. npm install -g db-migrate
 
-    - PORT=3000
-    - ENV=dev
-    #### POSTGRES DATABASE CONNECTION
-    #### DEV
-    - POSTGRES_HOST_DEV=<DEV_HOST>
-    - POSTGRES_DATABASE_DEV=<DEV_DATABASE>
-    - POSTGRES_USER_DEV=<DEV_USER>
-    - POSTGRES_PASSWORD_DEV=<DEV_PASSWORD>
-    #### TEST
-    - POSTGRES_HOST_TEST=<TEST_HOST>
-    - POSTGRES_DATABASE_TEST=<TEST_DATABASE>
-    - POSTGRES_USER_TEST=<TEST_USER>
-    - POSTGRES_PASSWORD_TEST=<TEST_PASSWORD>
-    #### PASSWORD HASH
-    - PASSWORD_PEPPER=<PASSWORD_HASH_KEY>
-    - PASSWORD_SALT_ROUND=10
-    #### JWT
-    - JWT_TOKEN_SECRET=<TOKEN_SECRET>
+## 2 Setup ENV
+1. Create .env file
 
-3. create database.json file
+   - ENV=dev
+   - PORT=3000
 
-    - {
-        - "dev": {
-            - "driver": "pg",
-            - "host": <DEV_HOST>,
-            - "database": <DEV_DATABASE>,
-            - "user": <DEV_USER>,
-            - "password": <DEV_PASSWORD>
-        - },
-        - "test": {
-            - "driver": "pg",
-            - "host": <TEST_HOST>,
-            - "database": <TEST_DATABASE>,
-            - "user": <TEST_USER>,
-            - "password": <TEST_PASSWORD>
-        - },
-    - }
+   - PG_HOST=<DEV_HOST>
 
-4. npm install -g db-migrate
-5. db-migrate up
-6. npm run dev
-7. local Postgres port is 5432
+   - PG_DEV_DB=<DEV_DATABASE>
+   - PG_DEV_USER=<DEV_USER>
+   - PG_DEV_PWD=<DEV_PASSWORD>
 
-# How to Test
-1. npm run test (jasmine)
-2. import "a-storefront-backend.postman_collection" to POSTMAN (API)
-3. import "a-storefront-backend-dev.postman_environment" to POSTMAN (ENV)
-4. create first user with POST /user
-5. login with POST /auth/login
+   - PG_TEST_DB=<TEST_DATABASE>
+   - PG_TEST_USER=<TEST_USER>
+   - PG_TEST_PWD=<TEST_PASSWORD>
+
+   - PWD_HASH_KEY=<PASSWORD_HASH_KEY>
+   - PWD_SALT_ROUND=10
+
+   - JWT_TOKEN_SECRET=<TOKEN_SECRET>
+
+2. Local Postgres Port: 5432
+
+## 3 Migrate Database
+- db-migrate up
+
+## 4 Run Server
+- npm run dev
+
+## 5 Run Test
+
+1. npm run test
+2. create first user: [POST] /user
+3. login with: [POST] /user/login
